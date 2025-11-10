@@ -1,5 +1,3 @@
-
-
 import React from "react";
 import { LayoutGrid, Table } from "lucide-react";
 
@@ -17,21 +15,23 @@ export default function Filters({
   const locations = [...new Set(companies.map((c) => c.location))];
 
   return (
-    <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mb-6 bg-white border border-gray-200 rounded-lg shadow-sm p-4">
+    <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mb-6 bg-white rounded-lg shadow-sm p-4">
       {/* Left section - Filter inputs */}
       <div className="flex flex-wrap items-center gap-4 w-full sm:w-auto justify-center sm:justify-start">
 
         {/* Industry Filter */}
         <div className="flex flex-col">
-          <label className="text-sm font-semibold text-gray-700 mb-1">
+          <label className="text-base font-semibold text-gray-700 mb-1">
             Industry
           </label>
           <select
             value={filters.industry}
-            onChange={(e) => setFilters({ ...filters, industry: e.target.value })}
-            className="border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+            onChange={(e) =>
+              setFilters({ ...filters, industry: e.target.value })
+            }
+            className="border border-gray-300 rounded-md px-3 py-2 text-base focus:outline-none focus:ring-2 focus:ring-blue-400"
           >
-            <option value="">All</option>
+            <option value="All">All</option> {/* ✅ FIXED */}
             {industries.map((ind, i) => (
               <option key={i} value={ind}>
                 {ind}
@@ -42,15 +42,17 @@ export default function Filters({
 
         {/* Location Filter */}
         <div className="flex flex-col">
-          <label className="text-sm font-semibold text-gray-700 mb-1">
+          <label className="text-base font-semibold text-gray-700 mb-1">
             Location
           </label>
           <select
             value={filters.location}
-            onChange={(e) => setFilters({ ...filters, location: e.target.value })}
-            className="border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+            onChange={(e) =>
+              setFilters({ ...filters, location: e.target.value })
+            }
+            className="border border-gray-300 rounded-md px-3 py-2 text-base focus:outline-none focus:ring-2 focus:ring-blue-400"
           >
-            <option value="">All</option>
+            <option value="All">All</option> {/* ✅ FIXED */}
             {locations.map((loc, i) => (
               <option key={i} value={loc}>
                 {loc}
@@ -61,13 +63,13 @@ export default function Filters({
 
         {/* Sort By */}
         <div className="flex flex-col">
-          <label className="text-sm font-semibold text-gray-700 mb-1">
+          <label className="text-base font-semibold text-gray-700 mb-1">
             Sort By
           </label>
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value)}
-            className="border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="border border-gray-300 rounded-md px-3 py-2 text-base focus:outline-none focus:ring-2 focus:ring-blue-400"
           >
             <option value="name">Name</option>
             <option value="industry">Industry</option>
@@ -80,7 +82,7 @@ export default function Filters({
       <div className="flex items-center gap-3">
         <button
           onClick={() => setView("cards")}
-          className={`flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-md transition ${
+          className={`flex items-center gap-1 px-4 py-2 text-base font-medium rounded-md transition ${
             view === "cards"
               ? "bg-blue-600 text-white"
               : "bg-gray-100 text-gray-700 hover:bg-gray-200"
@@ -91,12 +93,13 @@ export default function Filters({
 
         <button
           onClick={() => setView("table")}
-          className={`flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-md transition ${
+          className={`flex items-center gap-1 px-4 py-2 text-base font-medium rounded-md transition ${
             view === "table"
               ? "bg-blue-600 text-white"
               : "bg-gray-100 text-gray-700 hover:bg-gray-200"
           }`}
         >
+          <Table size={18} />
           <span>📋 Table View</span>
         </button>
       </div>
